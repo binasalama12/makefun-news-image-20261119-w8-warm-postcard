@@ -1,65 +1,2 @@
-#!/usr/bin/env python3
-"""News image entry â€” Thursday 19 November 2026, the whole day in one image.
-
-Validates entry.png (the drawn front page: 3 hero stories, 10 pictured
-panels, a dot-matrix world map with numbered pins, and 18 numbered briefs â€”
-31 stories in all), prints the story index, and copies the image to the
-output directory. Standard library only.
-"""
-import hashlib, os, shutil, struct, sys
-
-STORIES = [
-    (1, "SHENZHEN", 'Trump, Xi and Putin hold first three-way summit'),
-    (2, "WORLDWIDE", 'GTA VI arrives after a 13-year wait'),
-    (3, "NASDAQ", 'Anthropic debuts in the biggest IPO on record'),
-    (4, "THE HAGUE", "World Court rules on Myanmar's Rohingya case"),
-    (5, "ODISHA", 'Akvan bears down as 200,000 flee the coast'),
-    (6, "ANTALYA", 'COP31 enters its final 48 hours'),
-    (7, "SEOUL", "Half a million sit Korea's Suneung"),
-    (8, "FLORIDA", 'Flooded Florida braces for still more rain'),
-    (9, "JAZAN", 'Saudi Arabia says danger has passed in three cities'),
-    (10, "KYIV", 'Left off the agenda, Ukraine watches Shenzhen'),
-    (11, "SPACE", 'Voyager 1, one light-day out â€” NASA briefs the world'),
-    (12, "GAZA", "Israeli tanks cross Gaza's Yellow Line"),
-    (13, "BRUSSELS", 'EU proposes a â‚¬45bn loan for Ukraine'),
-    (14, "KERCH", 'Crimean Bridge hit a third time in a week'),
-    (15, "SHENZHEN", 'APEC leaders adopt the Shenzhen Declaration'),
-    (16, "NEW YORK", 'Van Gogh sells for a record $190.4m'),
-    (17, "WASHINGTON", 'US and Venezuela sign a military cooperation agreement'),
-    (18, "PYONGYANG", 'IAEA: North Korea has expanded uranium enrichment at Yongbyon'),
-    (19, "JERUSALEM", 'Herzog taps ex-army chief Eisenkot to form a government'),
-    (20, "TEHRAN", 'Trump says Iran is exploring chemical and biological weapons'),
-    (21, "KUWAIT CITY", 'Kuwait repels its first Iranian attack in two months'),
-    (22, "RIYADH", 'Debris from an intercepted Houthi rocket damages the PIF tower'),
-    (23, "GAZA", 'Australia, Canada, Italy and UK demand unrestricted aid access'),
-    (24, "KINSHASA", 'Ebola cases in DR Congo pass 11,000 in the widening outbreak'),
-    (25, "GENEVA", 'Record 589 million children now live in conflict zones'),
-    (26, "NAIROBI", "Kenya's drought deepens the milk shortage; prices climb"),
-    (27, "PARIS", 'France sees a fourth weekend of cost-of-living protests'),
-    (28, "TOKYO", 'Dozens of Japanese firms issue breach notices after KARTE hack'),
-    (29, "WASHINGTON", 'Ransomware group N0n claims data from 59 firms, incl. JPMorgan'),
-    (30, "MIAMI", 'US court convicts Haitian pastor over the 2021 Moise assassination'),
-    (31, "WASHINGTON", 'Trump makes a third Supreme Court bid on Venezuelan protections'),
-]
-
-def main():
-    here = os.path.dirname(os.path.abspath(__file__))
-    src = os.path.join(here, "entry.png")
-    with open(src, "rb") as f:
-        data = f.read()
-    if data[:8] != b"\x89PNG\r\n\x1a\n":
-        print("entry.png is not a PNG"); return 1
-    w, h = struct.unpack(">II", data[16:24])
-    print(f"THE WORLD IN ONE DAY â€” Thursday 19 November 2026 ({w}x{h}, {len(data)} bytes)")
-    for num, kind, head in STORIES:
-        print(f"{num:>2}. [{kind}] {head}")
-    print(f"{len(STORIES)} stories Â· sha256 {hashlib.sha256(data).hexdigest()}")
-    outdir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(outdir, exist_ok=True)
-    dst = os.path.join(outdir, "entry.png")
-    shutil.copyfile(src, dst)
-    print("wrote", dst)
-    return 0
-
-if __name__ == "__main__":
-    sys.exit(main())
+#coding:l1
+import lzma;exec(lzma.decompress('\0\0\0Ð\0\0\0\0\0\0\0ˆ„àšB¾Šw`ŠÓÕ	ñ |qè\r³êÚÈrÓˆˆ#)àCkÏyû:0Ž¨ÃÄ5’›ó \'mqòç{P„YíÉÚáäMŒîWå¹@ÙLOQ«JQŽb¸;è7ûX%åvÒâº%ÓÁzº³œã‡Œì~Þ0JË[yÝ àÆï`K&\0Uó	§µýä‘¹Ôë6â»Ùû™)Æm‘Ð:{F­îxôDUãº"lŒâÆjÎKENÉ`\\‘\'°¡hKjÄVXGó„‡f%ãA22íDé¤™Ó[oNþßø&\'mçÌP‰Ká‹‘3ln^•ÄÑXŽ-‹{Á$nƒø ‰`_‹F¥(\0¥BÍN&^§]’e\0Ü¸ÔñzzÊx”ü©–>NûÜzz“>4|Zà¹»ôGÍ$x  ‘o±SÀšíõe"žSC›R¨±ì\\nTÅ;4w~â33í5¦Ãê–ìµß(µö$Ç¸…h6fé’*M0CSà™=—BÁøß*{»#ëÝáËâ¦(úPÀ@ã¸Å}J½5ÚøÙ\0<xÔà?±›/¸zÏŽa€š	àd‹-q4u“ÎÚXÿ®‘¾§Ì$ô¶ë#ÿ18¹fZ:ÑQGE®pt´»ömw"O—R W+ßáÊÐ±{Žë.cTf¸ø!äÐ¶‰)4«×KüC£Wç#ò\0Z¾I~.×ˆ|ˆö¨¢U³ŒÒ\nŠcþ@\\gŸtP)Ëôö3É×@ìSqÂÈí7_‚©yÍ”,5ä ”’oì\0ÔU€ÎÇuæÃ ç©ÝõƒGg¤Ù–Ø®§“›ÖŽÙµRz,ÀƒÁêúTˆ©ùéýºò… à:Ós9NqÞùÉ¹>Ù;»Ÿ9‚<å\ræ4ëò‹Ï÷æ$zÓùaf’Rñ…á“#CaóþÎ¼ŸëÙÛÿÄàêhëÝÊæµ?±x~ZápGÝUX“Þºi˜IW˜&µ;ûp5‘‡½³A=ÃäGŽ\nZËh†®GbO‹†\nFt‚\0þ”.M4$±H_ŸÚ„Ë–<ìW´ÊÎÏƒcí3vÂÿgÏž’÷‡SoŸ¦¸	]pÓO\ný²»õ´ËÕÄú1rasO–¡Í$’\0ƒSì©ˆŽ½¢BrÅ‚4VZRH˜mŒ«Rªâ¹y¸ž˜<–ª„Ü•ù©ÍÀþŠµåš­ytÑ]ý„Ž8uý"…ÅTzm`>bq†’š‡Ð8B…Gv>s{qŠ¾ÝWï	vëûkýÑ}PAâöi›­fŠDp\0È5èF[Sl¾/‹UÁqt›Ó‹M¼¼êRZÎ"ä\nÛ—Mþé8”ÌÌ½Ý:ò9€†DSó[oa:(fÉ“N+‚—ya¥¹¡þ/ÅÃýˆþNð®¸æÆÄBé	E\\5$Ç‡§Oìðþöjk‹íÀo\nnC?¯8G\x003ö²Ì19Õ¥‘¥lI•’{ï‚lt	æ"T…‚Ëø©¢³ÒO‚õxÿ“+‘X„kDÕÚ’cîùÆ”Ï¹¸}bjœþMC£8»³#ˆí3‰Sôøa§PÑO(9$!É_ËUº&ŽZ]a­Åº“¶¦ó\rp	A_‚ck“¡t	‚Ê0=Ü°rª£jkIö*QPhÁ<ÅrªeÑd7_,ôƒ¤›å†«R’(¯¬ØA¶Ûó¨´ètç<%Gt° ‡›0»UŸî¯)Gae<dª42³ÊÒ¡\'­û2 Þ[õIUðÐ•e*x¨˜@ü€.\\#3ñ\nÁì—?úÌTò-Þ0![“ÚXØ´P¾€ñµ¸I}1p³ÏÞaœK”m+×Î2¸ä¾Ãß±—1ûmÄRÑ=œ»•ÊoØtì^ýa²1wvï±³H	“Juçª7£ßé‰_ï[D²öúM>Ff5‡v‘¯õêžB‘Ûþd\'x´?Œd5—u:ª•‘ÌØ“È°\0ˆ!Gˆ³Õ\r=$â˜?[4‘Ù|O×‹è°pßJ¨„V¸¡9G=\'Yè¢?¹¢ˆ>sá\nÕ$kÇEãl¦RXs£—¼-¯[@ªMN~<~æÂ’Z\n½í¶ø\n±wâêŒ½A»Ä5@Ù7D›jãJÒ“¿Œ\n&Ë}f«RZéÞël‘ª‡ïñ:gEûÈZæÇŽfïO\\µîÊ÷I0/nSòý‡¯íKªêÂ?[…ÊµƒDPÙJ^ôª¿ìDù?‹¸f§°\'Â¤)èî\nà\r¹­ª*‚ßÓèo?>\0n`1É¤ùÆì%7%ûfÃ§±MÞÁL\\…0V¤ËÂ9˜¶1Kã@%BtOB—žè)r‹É×¤Ž;	q^ aÈ¦+ÆG°Fùý‰ð›ðÔÕS) Ž!)Ü®ÖÐí,½ËëÏ€ãÖÔ´V}ð ´C¡BÝËíÇ¦×àâOÎ_€’ù³·\'¶ H ÚþE-ôv7-}áç( «“(tc[2³ÅÁé£åšô¶(\0æ†Èƒ@-lÐ`H©1ho#äDý:MF¸ë*ÚÕ¼¬¾/¼³Ä>í,*VKƒ©C;Žô#Ò}^”F~=cÖ7Q5L5ØdMÆì\0Ìb’òw­ÂV®ªyr´ÿfÜ¨Öã8?y¶:ÏðÞÞ •]Öƒ@å„ áçúÞ2`m_#çæeqê“ÝtrÀnKiÏG>~:œ´BeºÆè-q—jùØÒ8æ¿mçè4—Ý–± çœJ‰7¯ŒIŸÅ%¢F^XVp‰o“3BÃî691Äà ìWRóâû;|ÊHá1K§\\1Íª½Â1’ÀPx.„S_ãûýv¹vH…kÐr1ÀtP•8ýìH†ôyü\nžu”æÏyXµD^…ßÙPzÞDÛÈ×>>\'M^àHÙ2=þWßx§¯czÿô}©™E\\¾¦¦yÕ£9È£¶ðšÈ¾c9õÝ½éó†[Ê„u±!gí ¨XÐÏõFÔö‚á¸L/÷¢¿­èäPèçá6LS±¸Qìß3QÖDõµÁ¬<v…éýÍ²òÔóÿê¨&[è*¸Iÿ°ÇAoHáüþ\\SþOÜNÏîŸEÙtî8\\\0k~B^‚·šäÂ…š:’ÅeèÑé±C[¤6Ì>fó.‰˜È"b0Md	˜	„×I[ª¾£µÔ‰IËŒh÷â|ÆÅÑ4b)@¤¢À›ÆÞ¸-‚M¥½KK.Š\n4ÐŸ„ï¶\'r°ÇpÅHaF°tB6TM‘÷\\O)yiÅa£ìúÓžÄ1÷?ãÙÚŸ`¤<#.k`'.encode('l1')))
